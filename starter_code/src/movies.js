@@ -106,27 +106,46 @@ function orderByDuration(movieWithMinutes) {
 
 // How many movies did STEVEN SPIELBERG
 
+function howManyMovies(film, director, genre) {
+    var director = film.director;
+    var genre = film.genre;
+    var numberOfMovies = film.filter(function(movie) {
+        return movie.director.includes("Steven Spielberg") && movie.genre.includes("Drama");
+    });
+    // var genre = film.filter(function(movie) {
+    //     return film.genre.includes(String(genre));
+    // }); 
+
+    if (numberOfMovies.length === 0) {
+        return;
+    }
+    var stringOfMovies = numberOfMovies.length;
+    return "Steven Spielberg directed " + stringOfMovies.toString() + " drama movies!";
+
+
+};
+console.log(howManyMovies(movies));
 
 // Order by title and print the first 20 titles
 
+function orderAlphabetically(film) {
+    var sorting = film.sort(function (a,b) {
+        nameA = a.title.toUpperCase();
+        nameB = b.title.toUpperCase();
+        if (nameA < nameB) {
+            return -1;
+        }
+        else {
+            return 1;
+        }
+    });;
+
+    var sorted = sorting.splice(0,20);
+    return sorted.map(function(el){
+        return el.title;
+    });
+   
+}
+console.log(orderAlphabetically(movies));
 
 // Best yearly rate average
-// if (a.duration === b.duration) {
-//     nameA = a.name.toUpperCase();
-//     nameB = b.name.toUpperCase();
-//     if (nameA < nameB) {
-//         return -1;
-//     }
-//     else if (nameA > nameB) {
-//         return 1;
-//     }
-//     return 0;
-// };
-
-
-/***THE RIGHT CODE - NO RED UNDERLING FOR ALPHABET
- *    if (a.duration === b.duration) {
-            
-            
-        *****/
-
