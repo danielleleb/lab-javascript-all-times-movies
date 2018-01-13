@@ -1,6 +1,36 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes 
 
+function turnHoursToMinutes(array) {
+    var movieWithMinutes = array.map(function(movie){
+        var hours = 0;
+        var minutes = 0;
+        var hourToMinutes = 0;
+
+        var indexHour = movie.duration.indexOf('h');
+        if (indexHour !== -1) {
+            hours = parseInt(movie.duration.substring(0,indexHour));
+            hourToMinutes = hours * 60;
+        }
+
+        var indexMinute = movie.duration.indexOf('min');
+        if (indexMinute !== -1) {
+            if (indexHour !== -1) {
+                minutes = parseInt(movie.duration.substring(indexHour + 1,indexMinute));
+            }
+               else {
+
+                minutes = parseInt(movie.duration.substring(0,indexMinute));
+            }
+        }
+
+        movieWithMinutes = Object.assign({}, movie, { duration: hourToMinutes + minutes });
+        return movieWithMinutes;
+    });
+
+    return movieWithMinutes;
+}
+
 
 
 
@@ -53,6 +83,12 @@ function dramaMoviesRate(movie) {
 
 // Order by time duration, in growing order
 
+function orderByDuration(movieWithMinutes) {
+    var sorted = movieWithMinutes.sort(function (a, b) {
+        return a.duration - b.duration; 
+    });
+        return sorted;
+};
 
 // How many movies did STEVEN SPIELBERG
 
@@ -61,3 +97,14 @@ function dramaMoviesRate(movie) {
 
 
 // Best yearly rate average
+// if (a.duration === b.duration) {
+//     nameA = a.name.toUpperCase();
+//     nameB = b.name.toUpperCase();
+//     if (nameA < nameB) {
+//         return -1;
+//     }
+//     else if (nameA > nameB) {
+//         return 1;
+//     }
+//     return 0;
+// };
