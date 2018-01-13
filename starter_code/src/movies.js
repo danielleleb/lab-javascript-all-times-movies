@@ -85,7 +85,21 @@ function dramaMoviesRate(movie) {
 
 function orderByDuration(movieWithMinutes) {
     var sorted = movieWithMinutes.sort(function (a, b) {
+        if ( a.duration !== b.duration) {
         return a.duration - b.duration; 
+        }
+        else if (a.duration === b.duration) {
+            nameA = a.title.toUpperCase();
+            nameB = b.title.toUpperCase();
+
+            if (nameA < nameB) {
+                return -1;
+            }
+            else if (nameA > nameB) {
+                return 1;
+            }
+            return 0;
+        }
     });
         return sorted;
 };
@@ -108,3 +122,11 @@ function orderByDuration(movieWithMinutes) {
 //     }
 //     return 0;
 // };
+
+
+/***THE RIGHT CODE - NO RED UNDERLING FOR ALPHABET
+ *    if (a.duration === b.duration) {
+            
+            
+        *****/
+
